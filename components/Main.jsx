@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "expo-router";
 import {
   View,
-  ScrollView,
   ActivityIndicator,
   FlatList,
   Image,
+  Pressable,
 } from "react-native";
+import "../global.css";
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 
 import { getLatestGames, getGameDetails } from "../lib/games.js";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { GameCard, AnimateGameCard } from "./GameCard.jsx";
+import { InfoIcons } from "./Icons.jsx";
 
 export function Main() {
   const [games, setGames] = useState([]);
@@ -22,10 +26,17 @@ export function Main() {
   }, []);
 
   return (
-    <View style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
-      <View style={{ marginBottom: 10 }}>
-        <Image source={require("../assets/favicon.png")} />
-      </View>
+    <View className="bg-black">
+      {/* <View className="flex-row justify-between items-center mb-4 mx-2">
+        <View>
+          <Image source={require("../assets/favicon.png")} />
+        </View>
+        <Link asChild href="/about">
+          <Pressable>
+            <InfoIcons />
+          </Pressable>
+        </Link>
+      </View> */}
       {games.length === 0 ? (
         <ActivityIndicator size={"large"} />
       ) : (
