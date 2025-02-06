@@ -1,18 +1,21 @@
 import { Pressable, ScrollView, Text } from "react-native";
-// import { Text } from "react-native-web";
-import "../global.css";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
+import { HomeIcons } from "../../components/Icons";
+import "../../global.css";
 import { Link } from "expo-router";
-import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-import { HomeIcons } from "../components/Icons";
+import Screen from "../../components/Screen";
 
 export default function About() {
+  const router = useRouter();
   return (
-    <ScrollView className="pt-10">
-      <Link asChild href="/">
-        <Pressable>
-          <HomeIcons />
-        </Pressable>
-      </Link>
+    <Screen>
+    <ScrollView>
+      <Stack.Screen options={{
+              headerStyle:{backgroundColor: "#ffee12"},
+              headerTintColor: "black",
+              headerTitle: `About Us`,
+              headerRight: () => {},
+            }}/>
       <Text className="text-white font-bold mb-8 text-2xl">About</Text>
       <Text className="text-white text-white/90 mb-4">
         The standard chunk of Lorem Ipsum used since the 1500s is reproduced
@@ -71,5 +74,6 @@ export default function About() {
         by H. Rackham.
       </Text>
     </ScrollView>
+    </Screen>
   );
 }

@@ -1,20 +1,53 @@
-import { Text, View } from "react-native";
+import { Text, View, Pressable, ActivityIndicator, ScrollView, Image } from "react-native";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import "../global.css";
-import { Link } from "expo-router";
-import { useLocalSearchParams } from "expo-router";
+import Screen from "../components/Screen";
+import { useEffect, useState } from "react";
+import { getGameDetails } from "../lib/games";
 
 export default function Detail() {
   const { id } = useLocalSearchParams();
+  const router = useRouter();
+  const [gameInfo, setGameInfo] = useState(null);
+
+  useEffect(() => {
+    if(id) {
+      getGameDetails(id).then(setGameInfo);
+    }
+  }, [id])
+
   return (
-    <View className="flex-1 justify-center items-center bg-black">
+    <Screen>
+      <Stack.Screen options={{
+        headerStyle:{backgroundColor: "#ffee12"},
+        headerTintColor: "black",
+        headerLeft: () => {},
+        headerTitle: `Juego ${id}`,
+        headerRight: () => {},
+      }}/>
+
       <View>
-        <Text className="text-white font-bold mb-8 text-2xl">
-          Detalle del juego {id}
-        </Text>
-        <Link href="/" className="text-blue-400">
-          Volver atrás
-        </Link>
+        {
+          gameInfo === null ? (
+            <ActivityIndicator color={"#fff"} size={"large"}/> ) : 
+          (
+            <ScrollView>
+              <View className="justify-center items-center text-center">
+              <Image className="mb-4 rounded" source={{ uri: `${gameInfo.image}` }} style={{width: 225, height:125}} />
+              <Text className="text-white font-bold mb-8 text-2xl">
+                {gameInfo.title}
+              </Text>
+              <Text className="text-white/70 mt-4 text-left mb-8 text-base">
+                {gameInfo.description}
+              </Text>
+              </View>
+            </ScrollView>
+          )
+        }
+        {/* <Pressable onPress={() => router.back()}>
+          <Text className="text-blue-400">Volver atrás</Text>
+        </Pressable> */}
       </View>
-    </View>
+    </Screen>
   );
 }

@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "expo-router";
 import {
-  View,
   ActivityIndicator,
   FlatList,
-  Image,
-  Pressable,
 } from "react-native";
 import "../global.css";
-import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 
 import { getLatestGames, getGameDetails } from "../lib/games.js";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { GameCard, AnimateGameCard } from "./GameCard.jsx";
-import { InfoIcons } from "./Icons.jsx";
+import Screen from "./Screen.jsx";
 
 export function Main() {
   const [games, setGames] = useState([]);
@@ -26,7 +21,7 @@ export function Main() {
   }, []);
 
   return (
-    <View className="bg-black">
+    <Screen>
       {/* <View className="flex-row justify-between items-center mb-4 mx-2">
         <View>
           <Image source={require("../assets/favicon.png")} />
@@ -48,6 +43,6 @@ export function Main() {
           )}
         />
       )}
-    </View>
+    </Screen>
   );
 }
