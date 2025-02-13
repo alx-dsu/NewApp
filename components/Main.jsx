@@ -5,7 +5,7 @@ import {
 } from "react-native";
 import "../global.css";
 
-import { getLatestGames, getGameDetails } from "../lib/games.js";
+import { getLatestGames } from "../lib/games.js";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { GameCard, AnimateGameCard } from "./GameCard.jsx";
 import Screen from "./Screen.jsx";
@@ -22,16 +22,6 @@ export function Main() {
 
   return (
     <Screen>
-      {/* <View className="flex-row justify-between items-center mb-4 mx-2">
-        <View>
-          <Image source={require("../assets/favicon.png")} />
-        </View>
-        <Link asChild href="/about">
-          <Pressable>
-            <InfoIcons />
-          </Pressable>
-        </Link>
-      </View> */}
       {games.length === 0 ? (
         <ActivityIndicator size={"large"} />
       ) : (

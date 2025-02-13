@@ -44,9 +44,6 @@ export default function Detail() {
             </ScrollView>
           )
         }
-        {/* <Pressable onPress={() => router.back()}>
-          <Text className="text-blue-400">Volver atrás</Text>
-        </Pressable> */}
       </View>
     </Screen>
   );

@@ -4,15 +4,11 @@ import {
   Text,
   View,
   Image,
-  ScrollView,
   Animated,
   Pressable,
 } from "react-native";
 import "../global.css";
 import { Link } from "expo-router";
-// import { styled } from "nativewind";
-
-// const StyledPressable = styled(Pressable);
 
 export function GameCard({ game }) {
   return (
